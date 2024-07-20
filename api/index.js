@@ -2,8 +2,6 @@ import express from "express";
 import dotenv from 'dotenv';
 dotenv.config();
 import cookieParser from "cookie-parser";
-import path from 'path';
-const __dirname = path.resolve();
 
 //user modules 
 import connectToDB from './config/connectToDB.js';
@@ -22,11 +20,8 @@ app.use(cookieParser());
 app.use('/api/user',userRoutes);
 app.use('/api/expense',expenseRoutes);
 
-app.use(express.static(path.join(__dirname, '/client/dist')));  
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-})
+
 
 app.listen(PORT,()=>{
     connectToDB();
